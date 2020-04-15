@@ -8,7 +8,7 @@ variable "location" {
 
 variable "network_name" {
   description = "Google VPC network name"
-  default     = "default"
+  default     = "terraform-vpc-network"
 }
 
 variable "cluster_provider" {
