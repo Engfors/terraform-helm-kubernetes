@@ -1,9 +1,9 @@
 terraform {
   backend "remote" {
-    organization = "hashicorp-team-da-beta"
+    organization = "engfors"
 
     workspaces {
-      name = "qa-kubernetes-consul"
+      name = "kubernetes-consul"
     }
   }
 }
