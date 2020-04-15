@@ -1,6 +1,6 @@
 terraform {
   backend "remote" {
-    organization = "runtriggers-k8s-demo"
+    organization = "engfors"
 
     workspaces {
       name = "cluster"

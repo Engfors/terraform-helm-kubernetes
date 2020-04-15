@@ -6,6 +6,11 @@ variable "location" {
   }
 }
 
+variable "network_name" {
+  description = "Google VPC network name"
+  default     = "default"
+}
+
 variable "cluster_provider" {
   type        = string
   default     = "gke"

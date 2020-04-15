@@ -3,6 +3,7 @@ data "google_compute_zones" "available" {}
 resource "google_container_cluster" "engineering" {
   name     = var.cluster_name
   location = data.google_compute_zones.available.names.0
+  network  = module.network.network_name
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
@@ -23,12 +24,12 @@ resource "google_container_cluster" "engineering" {
 }
 
 resource "google_container_node_pool" "engineering_preemptible_nodes" {
-  name       = "${var.cluster_name}-node-pool"
-  cluster    = google_container_cluster.engineering.name
-  location   = data.google_compute_zones.available.names.0
+  name     = "${var.cluster_name}-node-pool"
+  cluster  = google_container_cluster.engineering.name
+  location = data.google_compute_zones.available.names.0
 
   node_count = var.enable_consul_and_vault ? 3 : 1
-  
+
   node_config {
     preemptible  = true
     machine_type = "n1-standard-1"
