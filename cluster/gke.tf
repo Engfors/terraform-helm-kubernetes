@@ -1,9 +1,9 @@
 data "google_compute_zones" "available" {}
 
 resource "google_container_cluster" "engineering" {
-  name     = var.cluster_name
-  location = data.google_compute_zones.available.names.0
-  subnetwork  = module.network.subnet_name
+  name       = var.cluster_name
+  location   = data.google_compute_zones.available.names.0
+  subnetwork = module.network.subnets_names[0]
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
