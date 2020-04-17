@@ -22,6 +22,11 @@ resource "google_container_cluster" "engineering" {
   }
 
   ip_allocation_policy {}
+  
+  depends_on = [
+    google_project_service.container,
+    google_project_service.compute
+  ]
 }
 
 resource "google_container_node_pool" "engineering_preemptible_nodes" {
@@ -44,9 +49,4 @@ resource "google_container_node_pool" "engineering_preemptible_nodes" {
       "https://www.googleapis.com/auth/monitoring",
     ]
   }
-  
-  depends_on = [
-    google_project_service.container,
-    google_project_service.compute
-  ]
 }
