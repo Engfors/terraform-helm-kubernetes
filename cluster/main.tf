@@ -16,14 +16,14 @@ provider "google" {
 
 # Enables Compute Engine API
 resource "google_project_service" "compute" {
-  project            = google_project.ch-pds-test.project_id
+  project            = var.google_project
   service            = "compute.googleapis.com"
   disable_on_destroy = false
 }
 
 # Enables Kubernetes Engine API
 resource "google_project_service" "container" {
-  project            = google_project.ch-pds-test.project_id
+  project            = var.google_project
   service            = "container.googleapis.com"
   disable_on_destroy = false
 }
